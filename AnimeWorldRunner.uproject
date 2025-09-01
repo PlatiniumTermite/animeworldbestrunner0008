@@ -1,0 +1,35 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.3",
+	"Category": "",
+	"Description": "Anime World Runner - Mobile Endless Runner Game",
+	"Modules": [
+		{
+			"Name": "AnimeWorldRunner",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"CoreUObject",
+				"UMG"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "AndroidDeviceProfileSelector",
+			"Enabled": true
+		},
+		{
+			"Name": "AndroidMedia",
+			"Enabled": true
+		}
+	]
+}
