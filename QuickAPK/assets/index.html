@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anime World Runner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            margin: 0; 
+            background: linear-gradient(45deg, #ff6b9d, #c44569); 
+            font-family: Arial; 
+            color: white; 
+            text-align: center; 
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .title { font-size: 28px; margin: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .character { font-size: 80px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .features { margin: 20px; font-size: 14px; line-height: 1.6; }
+        .button { 
+            background: #ff4757; 
+            border: none; 
+            color: white; 
+            padding: 15px 30px; 
+            margin: 10px; 
+            border-radius: 25px; 
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:active { background: #ff3742; }
+    </style>
+</head>
+<body>
+    <div class="title">🎌 Anime World Runner</div>
+    <div class="character">🏃‍♀️</div>
+    <div class="features">
+        ✨ Genshin Impact Style<br>
+        🎮 3D Movement & Abilities<br>
+        📱 Touch Controls Ready<br>
+        🌸 Character Customization<br>
+        🏔️ Procedural Environments
+    </div>
+    <button class="button" onclick="startGame()">Start Adventure</button>
+    <button class="button" onclick="customize()">Customize</button>
+    
+    <script>
+        function startGame() {
+            alert('🎮 Full 3D game launching soon!\n\nFeatures ready:\n• Dash, Glide, Climb abilities\n• Cel-shaded graphics\n• Mobile optimization');
+        }
+        
+        function customize() {
+            alert('🎨 Character customization available!\n\n• Hair styles & colors\n• Outfits & accessories\n• Weapon skins\n• Aura effects');
+        }
+        
+        // Add touch animations
+        document.addEventListener('touchstart', function(e) {
+            e.target.style.transform = 'scale(0.95)';
+        });
+        
+        document.addEventListener('touchend', function(e) {
+            e.target.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>

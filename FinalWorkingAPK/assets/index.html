@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anime World Runner</title>
+<style>
+body{background:linear-gradient(45deg,#ff6b9d,#667eea);color:white;font-family:Arial;text-align:center;padding:20px;margin:0;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.character{font-size:100px;margin:40px 0;animation:bounce 2s infinite;cursor:pointer}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.title{font-size:28px;font-weight:bold;margin-bottom:20px;text-shadow:2px 2px 4px rgba(0,0,0,0.5)}
+.btn{background:rgba(0,0,0,0.5);border:2px solid white;color:white;padding:20px 40px;margin:15px;border-radius:30px;font-size:18px;cursor:pointer;display:block;width:200px;margin:15px auto}
+.btn:active{background:rgba(255,255,255,0.3)}
+.score{font-size:20px;margin:30px 0;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="title">🎌 Anime World Runner</div>
+<div class="character" onclick="action()" id="character">🏃‍♀️</div>
+<div class="score">Score: <span id="score">0</span></div>
+<button class="btn" onclick="jump()">⬆️ Jump</button>
+<button class="btn" onclick="dash()">⚡ Dash</button>
+<button class="btn" onclick="attack()">⚔️ Attack</button>
+<script>
+let score=0;let characters=['🏃‍♀️','🏃‍♂️','🧙‍♀️','🥷','🦸‍♀️'];let currentChar=0;
+function updateScore(){score+=100;document.getElementById('score').textContent=score}
+function action(){currentChar=(currentChar+1)%characters.length;document.getElementById('character').textContent=characters[currentChar];updateScore()}
+function jump(){updateScore();document.getElementById('character').style.transform='scale(1.5) translateY(-50px)';setTimeout(()=>{document.getElementById('character').style.transform=''},600)}
+function dash(){updateScore();action()}
+function attack(){updateScore();document.getElementById('character').style.transform='scale(1.4) rotate(20deg)';setTimeout(()=>{document.getElementById('character').style.transform=''},500)}
+document.addEventListener('touchstart',function(e){e.preventDefault();if(e.touches[0].clientY<window.innerHeight/2){jump()}else{dash()}});
+setInterval(updateScore,3000);console.log('🎌 Anime World Runner - Ready!');
+</script>
+</body>
+</html>

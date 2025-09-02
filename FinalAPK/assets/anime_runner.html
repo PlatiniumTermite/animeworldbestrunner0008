@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime World Runner</title>
+    <style>
+        body { 
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #667eea); 
+            color: white; 
+            font-family: Arial; 
+            margin: 0; 
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .game-area {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        .character {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .character.jumping { bottom: 200px; }
+        .character.dashing { transform: translateX(-50%) scale(1.2); }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        .btn {
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #ff6b9d;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn:active { 
+            transform: scale(0.9);
+            background: #ff6b9d;
+        }
+        .status {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        .effects {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+        }
+        .title {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">🎌 Anime World Runner</div>
+    
+    <div class="status" id="status">
+        Score: <span id="score">0</span><br>
+        State: <span id="state">Running</span>
+    </div>
+    
+    <div class="game-area" id="gameArea">
+        <div class="character" id="character">🏃‍♀️</div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="jump()">⬆️</button>
+        <button class="btn" onclick="dash()">⚡</button>
+        <button class="btn" onclick="attack()">⚔️</button>
+        <button class="btn" onclick="cast()">✨</button>
+    </div>
+    
+    <script>
+        let character = document.getElementById('character');
+        let gameArea = document.getElementById('gameArea');
+        let score = 0;
+        let isJumping = false;
+        let isDashing = false;
+        let isAttacking = false;
+        
+        function updateScore() {
+            score += 10;
+            document.getElementById('score').textContent = score;
+        }
+        
+        function jump() {
+            if (!isJumping) {
+                isJumping = true;
+                character.classList.add('jumping');
+                document.getElementById('state').textContent = 'Jumping';
+                
+                createEffect('💨', character.offsetLeft, character.offsetTop);
+                updateScore();
+                
+                setTimeout(() => {
+                    character.classList.remove('jumping');
+                    isJumping = false;
+                    document.getElementById('state').textContent = 'Running';
+                }, 600);
+            }
+        }
+        
+        function dash() {
+            if (!isDashing) {
+                isDashing = true;
+                character.classList.add('dashing');
+                document.getElementById('state').textContent = 'Dashing';
+                
+                createEffect('⚡', character.offsetLeft, character.offsetTop);
+                updateScore();
+                
+                setTimeout(() => {
+                    character.classList.remove('dashing');
+                    isDashing = false;
+                    document.getElementById('state').textContent = 'Running';
+                }, 400);
+            }
+        }
+        
+        function attack() {
+            if (!isAttacking) {
+                isAttacking = true;
+                document.getElementById('state').textContent = 'Attacking';
+                
+                createEffect('⚔️', character.offsetLeft + 50, character.offsetTop);
+                updateScore();
+                
+                setTimeout(() => {
+                    isAttacking = false;
+                    document.getElementById('state').textContent = 'Running';
+                }, 500);
+            }
+        }
+        
+        function cast() {
+            document.getElementById('state').textContent = 'Casting';
+            
+            createEffect('✨', character.offsetLeft, character.offsetTop - 30);
+            createEffect('🌟', character.offsetLeft + 30, character.offsetTop - 20);
+            updateScore();
+            
+            setTimeout(() => {
+                document.getElementById('state').textContent = 'Running';
+            }, 800);
+        }
+        
+        function createEffect(emoji, x, y) {
+            let effect = document.createElement('div');
+            effect.className = 'effects';
+            effect.textContent = emoji;
+            effect.style.left = x + 'px';
+            effect.style.top = y + 'px';
+            
+            gameArea.appendChild(effect);
+            
+            setTimeout(() => {
+                effect.remove();
+            }, 1000);
+        }
+        
+        // Touch controls
+        document.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            let touch = e.touches[0];
+            let x = touch.clientX;
+            let y = touch.clientY;
+            
+            if (y < window.innerHeight / 2) {
+                jump();
+            } else if (x < window.innerWidth / 3) {
+                attack();
+            } else if (x > window.innerWidth * 2/3) {
+                cast();
+            } else {
+                dash();
+            }
+        });
+        
+        // Auto-scoring
+        setInterval(updateScore, 2000);
+        
+        console.log('🎌 Anime World Runner - Fully Loaded!');
+        console.log('✅ All abilities working');
+        console.log('📱 Touch controls active');
+    </script>
+</body>
+</html>

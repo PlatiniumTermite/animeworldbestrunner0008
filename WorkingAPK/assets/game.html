@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime World Runner</title>
+    <style>
+        body { 
+            background: linear-gradient(45deg, #ff6b9d, #667eea); 
+            color: white; 
+            font-family: Arial; 
+            text-align: center; 
+            padding: 50px 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .character { 
+            font-size: 80px; 
+            margin: 30px 0; 
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .title { 
+            font-size: 24px; 
+            font-weight: bold; 
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .btn { 
+            background: rgba(0,0,0,0.3); 
+            border: 2px solid white; 
+            color: white; 
+            padding: 15px 30px; 
+            margin: 10px; 
+            border-radius: 25px; 
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:active { background: rgba(255,255,255,0.2); }
+        .score { 
+            font-size: 18px; 
+            margin: 20px 0; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">🎌 Anime World Runner</div>
+    <div class="character" onclick="jump()" id="character">🏃‍♀️</div>
+    <div class="score">Score: <span id="score">0</span></div>
+    
+    <button class="btn" onclick="jump()">⬆️ Jump</button>
+    <button class="btn" onclick="dash()">⚡ Dash</button>
+    <button class="btn" onclick="attack()">⚔️ Attack</button>
+    
+    <script>
+        let score = 0;
+        let characters = ['🏃‍♀️', '🏃‍♂️', '🧙‍♀️', '🥷'];
+        let currentChar = 0;
+        
+        function updateScore() {
+            score += 100;
+            document.getElementById('score').textContent = score;
+        }
+        
+        function jump() {
+            updateScore();
+            document.getElementById('character').style.transform = 'scale(1.2) translateY(-30px)';
+            setTimeout(() => {
+                document.getElementById('character').style.transform = '';
+            }, 500);
+        }
+        
+        function dash() {
+            updateScore();
+            currentChar = (currentChar + 1) % characters.length;
+            document.getElementById('character').textContent = characters[currentChar];
+        }
+        
+        function attack() {
+            updateScore();
+            document.getElementById('character').style.transform = 'scale(1.3) rotate(15deg)';
+            setTimeout(() => {
+                document.getElementById('character').style.transform = '';
+            }, 400);
+        }
+        
+        document.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            if (touch.clientY < window.innerHeight / 2) {
+                jump();
+            } else {
+                dash();
+            }
+        });
+        
+        console.log('🎌 Anime World Runner - Ready!');
+    </script>
+</body>
+</html>

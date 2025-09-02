@@ -1,16 +1,36 @@
-# Anime World Runner
+# 🎌 Anime World Runner - Ultimate Edition
 
-A complete production-ready mobile endless runner game built with Unreal Engine 5.3, optimized for Android devices including Samsung A56. Features anime-style visuals, lane-based movement, and comprehensive mobile optimization.
+**The Best Anime-Style Mobile Runner Game** 🏃‍♀️✨
 
-## 🎮 Game Features
+A complete Genshin Impact-inspired endless runner with advanced 3D movement, character customization, and mobile optimization. Features multiple APK builds, web deployment, and comprehensive Android support.
 
-### Core Gameplay
-- **Lane-based endless runner** with smooth character movement
-- **Three-lane system** with swipe/tap controls for mobile
-- **Jump and slide mechanics** for obstacle avoidance
-- **Power-up system** with multiple types (Magnet, Shield, Boost, Jetpack)
-- **Collectible coins** and scoring system
-- **Progressive difficulty** with auto-speed increase
+[![GitHub Release](https://img.shields.io/badge/Release-v1.0-brightgreen)](https://github.com/PlatiniumTermite/animeworldbestrunner0008)
+[![Android](https://img.shields.io/badge/Android-21%2B-green)](https://developer.android.com)
+[![Unreal Engine](https://img.shields.io/badge/Unreal-5.3%2B-blue)](https://unrealengine.com)
+
+## 🎮 Ultimate Game Features
+
+### 🎌 **Genshin Impact-Style Gameplay**
+- **Full 3D movement system** with directional control (MoveForward/MoveRight)
+- **Advanced character abilities**: Dash, Glide, Wall Climb, Combat
+- **6 unlockable anime characters** with unique animations
+- **Dynamic movement modes**: Walking, Running, Sprinting
+- **Physics-based jumping** with air control and wall-jumping
+- **Combat system** with attack and spell casting abilities
+
+### 📱 **Mobile-Optimized Features**
+- **Gesture-based touch controls** with swipe recognition
+- **Combo scoring system** with multipliers
+- **Real-time particle effects** and visual feedback
+- **Character customization** with unlockable items and colors
+- **Progressive level system** with auto-difficulty scaling
+- **Performance optimization** for Samsung A56 and all Android devices
+
+### 🚀 **Multiple Deployment Options**
+- **Native APK files** (9 different builds available)
+- **Web-based deployment** for instant compatibility
+- **Android Studio emulator** support
+- **Physical device installation** ready
 
 ### Mobile Optimization
 - **Performance-optimized** for Samsung A56 and similar devices
